@@ -1,3 +1,114 @@
+% GENERATED from shared/preamble.tex by sync-shared-resources.sh -- edits made here will not be copied back to shared/preamble.tex.
+%%%%%%%% Begin Imports %%%%%%%% 
 \usepackage{graphicx}
 \usepackage{xcolor}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{graphicx}
+%\usepackage{cite} 
+\usepackage{wrapfig}
+\usepackage{caption}
+%\usepackage{array}
+%\usepackage{rotating}
+%\usepackage{booktabs}
+%\usepackage{multirow}
+%\usepackage{verbatim}
+%\usepackage{textcomp}
+%\usepackage[edges]{forest}
+%\usepackage{pgfgantt}
+%\usepackage{pdfpages}
+%\usepackage[numbib]{tocbibind}
+%\usepackage{placeins}
+%\usepackage{comment}
+%\usepackage{gensymb}
+%\usepackage{mathpartir}
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
+\usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
+%\usepackage{enumitem}
+%\usepackage{fullpage}
+%%%%%%%% End Imports %%%%%%%%
+
+
+
+%%%%%%%% Begin TikZ Setup %%%%%%%%
+%\usepackage{tikz}
+%\usetikzlibrary{positioning,arrows.meta,calc,fit,backgrounds}
+%%%%%%%% End TikZ Setup %%%%%%%%
+
+%%%%%%%% Begin List Setup %%%%%%%%
+%\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+%%%%%%%% End List Setup %%%%%%%%
+
+%%%%%%%% Begin MakeTodo Def %%%%%%%%
+% Define the color list via \ifcase (1-indexed)
+\newcommand{\todocolorlist}[1]{%
+  \ifcase#1\or red\or cyan\or orange\or violet\or green\or magenta\or purple\or blue\or brown\or olive\or teal\or lime\fi%
+}
+\newcommand{\todolistlength}{12}
+
+% % Helper: capitalize first letter only
+\newcommand{\capfirst}[1]{\expandafter\@capfirst#1\@nil}
+\def\@capfirst#1#2\@nil{\MakeUppercase{#1}#2}
+
+% Counter to track current color
+\newcounter{todocoloridx}
+\setcounter{todocoloridx}{1}
+
+\newcommand{\MakeTodo}[2][]{%
+   % Use provided color or cycle
+  \ifx&#1&%
+    \colorlet{todocolor#2}{\todocolorlist{\thetodocoloridx}}%
+    \stepcounter{todocoloridx}%
+    \ifnum\thetodocoloridx>\todolistlength%
+      \setcounter{todocoloridx}{1}%
+    \fi%
+  \else
+    \colorlet{todocolor#2}{#1}%
+  \fi
+  % Clear before defining to allow redefinition
+  \expandafter\let\csname #2\endcsname\undefined%
+  % Define \<name>
+  \expandafter\newcommand\csname #2\endcsname[1]{%
+    \textcolor{todocolor#2}{\textbf{~[~\capfirst{#2}:~##1~]~}}%
+  }%
+}
+%%%%%%%% End MakeTodo Def %%%%%%%%
+%
+%%%%%%%% Begin MakeTodo %%%%%%%%
+\MakeTodo{todo}
+\MakeTodo[red]{fixme}
+%
+\MakeTodo{sarah}
+\MakeTodo{collaborator}
+% \MakeTodo{alice}
+% \MakeTodo{bob}
+% Add more people's todonotes with MakeTodo here
+%%%%%%%% End MakeTodo %%%%%%%%
+%
+%%%%%%%% Begin Sarah-convenience %%%%%%%%
+\let\sstodo\sarah % sarah-specifically likes calling sstodo
+%%%%%%%% End Sarah-convenience %%%%%%%%
+
+%%% CUSTOM COMMANDS %%%
+\newcommand{\getsrand}{\overset{\$}{\gets}}
+\newcommand{\tab}{\;\;\;\;}
+\renewcommand{\checkmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+%%% END CUSTOM COMMANDS %%%
+
+%%% VARIABLES %%%
+\newcommand{\F}{\mathbb{F}}
+
+\DeclareMathOperator{\negl}{negl}
+\DeclareMathOperator{\poly}{poly}
+
+\newcommand{\sk}{\ensuremath{sk}\xspace}
+\newcommand{\sk}{\ensuremath{vk}\xspace}
+
+%\DeclareMathOperator{\keygen}{KeyGen}
+
+
+%%% END VARIABLES %%%
